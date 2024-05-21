@@ -1,0 +1,38 @@
+import { createBrowserRouter } from "react-router-dom";
+import RootLayout from "../layouts/Home/RootLayout";
+import Home from "../pages/Home/Home";
+import ProtectedRoute from "./ProtectedRoute";
+import DashboardLayout from "../layouts/Dashboard/DashboardLayout";
+import DashboardPage from "../pages/Dashbaord/DashboardPage";
+
+const Routes = createBrowserRouter([
+    {
+        path: "/",
+        element: <RootLayout />,
+        children: [{
+            path: "/",
+            element: <Home />
+        }],
+        // errorElement: <LoadingPage />
+    },
+    // {
+    //     path: "/signin",
+    //     element: <Signin />
+    // },
+    {
+        path: "/dashboard",
+        element: (
+            <ProtectedRoute>
+                <DashboardLayout />
+            </ProtectedRoute>
+        ),
+        children: [
+            {
+                path: "",
+                element: <DashboardPage />
+            },
+        ]
+    }
+]);
+
+export default Routes;
