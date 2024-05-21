@@ -9,14 +9,19 @@
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
-  "keywords": ["MERN","Boilerplate", "Turbo repo","Mono repo"],
+  "keywords": [
+    "MERN",
+    "Boilerplate",
+    "Turbo repo",
+    "Mono repo"
+  ],
   "author": "Md Muhaiminul",
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
+    "dotenv-cli": "latest",
     "prettier": "^3.2.5",
-    "turbo": "latest",
-    "dotenv-cli": "latest"
+    "turbo": "latest"
   },
   "engines": {
     "node": ">=18"
