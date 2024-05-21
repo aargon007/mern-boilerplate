@@ -2,16 +2,21 @@
   "name": "mern-turbo-boilerplate",
   "private": true,
   "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
+    "dev": "dotenv -- turbo dev",
+    "build": "dotenv turbo -- build",
+    "start": "turbo start",
+    "live": "node apps/server/dist",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
+  "keywords": ["MERN","Boilerplate", "Turbo repo","Mono repo"],
+  "author": "Md Muhaiminul",
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "prettier": "^3.2.5",
-    "turbo": "latest"
+    "turbo": "latest",
+    "dotenv-cli": "latest"
   },
   "engines": {
     "node": ">=18"
