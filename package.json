@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "dotenv -- turbo dev",
     "build": "dotenv turbo -- build",
-    "start": "turbo start",
+    "start": "dotenv -- turbo start",
     "live": "node apps/server/dist",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
