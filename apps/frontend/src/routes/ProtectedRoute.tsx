@@ -1,13 +1,13 @@
-import { Navigate } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
 
 const ProtectedRoute = ({ children }: React.PropsWithChildren) => {
-    const token = decodeURIComponent(document.cookie).split("=")[1] || null;
+    const token = decodeURIComponent(document.cookie).split('=')[1] || null;
 
     if (token) {
         return children;
     } else {
         return <Navigate to="/login" replace />;
     }
-}
+};
 
 export default ProtectedRoute;

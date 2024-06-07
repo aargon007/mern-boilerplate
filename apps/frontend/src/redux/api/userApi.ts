@@ -1,50 +1,50 @@
-import { baseApi } from "./baseApi";
+import { baseApi } from './baseApi';
 
 const userApi = baseApi.injectEndpoints({
     overrideExisting: true,
     endpoints: (builder) => ({
         // send otp
         sendOtp: builder.mutation({
-            query: data => {
+            query: (data) => {
                 // console.log(data);
                 return {
                     url: '/auth/send-otp',
-                    method: "POST",
+                    method: 'POST',
                     body: data
-                }
+                };
             }
         }),
         // verify otp
         verifyOTP: builder.mutation({
-            query: data => {
+            query: (data) => {
                 // console.log(data);
 
                 return {
                     url: `/auth/verify-otp`,
-                    method: "POST",
+                    method: 'POST',
                     body: data
-                }
+                };
             }
         }),
         //activvate package
         setPackage: builder.mutation({
-            query: data => {
+            query: (data) => {
                 console.log(data);
 
                 return {
-                    url: "/subscription/active-package",
-                    method: "POST",
+                    url: '/subscription/active-package',
+                    method: 'POST',
                     body: data
-                }
+                };
             }
         }),
         // emergency log out
         logout: builder.mutation({
             query: () => ({
                 url: `/auth/logout`,
-                method: "POST"
+                method: 'POST'
             })
-        }),
+        })
         // get user data
         // getUser: builder.query({
         //     query: () => ({
@@ -52,9 +52,8 @@ const userApi = baseApi.injectEndpoints({
         //     }),
         //     providesTags: ["user"]
         // }),
-    }),
+    })
 });
-
 
 export const {
     useSendOtpMutation,

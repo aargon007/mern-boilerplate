@@ -1,18 +1,20 @@
-import { createBrowserRouter } from "react-router-dom";
-import RootLayout from "../layouts/Home/RootLayout";
-import Home from "../pages/Home/Home";
-import ProtectedRoute from "./ProtectedRoute";
-import DashboardLayout from "../layouts/Dashboard/DashboardLayout";
-import DashboardPage from "../pages/Dashbaord/DashboardPage";
+import { createBrowserRouter } from 'react-router-dom';
+import DashboardLayout from '../layouts/Dashboard/DashboardLayout';
+import RootLayout from '../layouts/Home/RootLayout';
+import DashboardPage from '../pages/Dashbaord/DashboardPage';
+import Home from '../pages/Home/Home';
+import ProtectedRoute from './ProtectedRoute';
 
 const Routes = createBrowserRouter([
     {
-        path: "/",
+        path: '/',
         element: <RootLayout />,
-        children: [{
-            path: "/",
-            element: <Home />
-        }],
+        children: [
+            {
+                path: '/',
+                element: <Home />
+            }
+        ]
         // errorElement: <LoadingPage />
     },
     // {
@@ -20,7 +22,7 @@ const Routes = createBrowserRouter([
     //     element: <Signin />
     // },
     {
-        path: "/dashboard",
+        path: '/dashboard',
         element: (
             <ProtectedRoute>
                 <DashboardLayout />
@@ -28,9 +30,9 @@ const Routes = createBrowserRouter([
         ),
         children: [
             {
-                path: "",
+                path: '',
                 element: <DashboardPage />
-            },
+            }
         ]
     }
 ]);

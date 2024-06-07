@@ -4,10 +4,10 @@ import {
     DefinitionType,
     FetchArgs,
     createApi,
-    fetchBaseQuery,
+    fetchBaseQuery
 } from '@reduxjs/toolkit/query/react';
-import { RootState } from '../store';
 import { logOutUser } from '../features/authSlice';
+import { RootState } from '../store';
 
 const baseQuery = fetchBaseQuery({
     baseUrl: 'http://3.15.227.208:8000/api/v1',
@@ -20,14 +20,14 @@ const baseQuery = fetchBaseQuery({
         }
 
         return headers;
-    },
+    }
 });
 
 const baseQueryWithRefreshToken: BaseQueryFn<
     FetchArgs,
     BaseQueryApi,
     DefinitionType
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
 > = async (args, api, extraOptions): Promise<any> => {
     let result = await baseQuery(args, api, extraOptions);
     console.log(result);
@@ -39,25 +39,28 @@ const baseQueryWithRefreshToken: BaseQueryFn<
         //* Send Refresh
         console.log('Sending refresh token');
 
-        const res = await fetch('http://3.15.227.208:8000/api/v1/auth/token/refresh', {
-            method: 'POST',
-            credentials: 'include',
-            body: JSON.stringify({
-                // refresh_token: (api.getState() as RootState).auth.refresh_token
-            })
-        });
+        const res = await fetch(
+            'http://3.15.227.208:8000/api/v1/auth/token/refresh',
+            {
+                method: 'POST',
+                credentials: 'include',
+                body: JSON.stringify({
+                    // refresh_token: (api.getState() as RootState).auth.refresh_token
+                })
+            }
+        );
 
         const data = await res.json();
 
         if (data?.access_token) {
             // const user = (api.getState() as RootState).auth.user;
-            
+
             // if new token generate then save this token for future use
             // api.dispatch(logOutUser());
 
             result = await baseQuery(args, api, extraOptions);
         } else {
-            // if token not refresh then sign out 
+            // if token not refresh then sign out
             api.dispatch(logOutUser());
         }
     }
@@ -68,6 +71,6 @@ const baseQueryWithRefreshToken: BaseQueryFn<
 export const baseApi = createApi({
     reducerPath: 'baseApi',
     baseQuery: baseQueryWithRefreshToken,
-    tagTypes: ["user"],
-    endpoints: () => ({}),
+    tagTypes: ['user'],
+    endpoints: () => ({})
 });

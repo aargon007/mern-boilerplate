@@ -7,7 +7,8 @@
     "start": "dotenv -- turbo start",
     "live": "node apps/server/dist",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "prettier": "prettier --write --ignore-unknown ."
   },
   "keywords": [
     "MERN",

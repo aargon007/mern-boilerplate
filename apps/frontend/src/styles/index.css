@@ -3,46 +3,46 @@
 @tailwind utilities;
 
 @layer base {
-	:root {
-		--primary: rgba(255, 255, 255, 1);
+    :root {
+        --primary: rgba(255, 255, 255, 1);
 
-		--radius: 8px;
-	}
+        --radius: 8px;
+    }
 
-	/* Default Styling */
-	* {
-		@apply  m-0 p-0 font-sans;
-	}
+    /* Default Styling */
+    * {
+        @apply m-0 p-0 font-sans;
+    }
 
-	input {
-		@apply px-4 py-4 bg-gray-300 text-sm rounded w-full border border-gray-100 placeholder:hidden focus:text-gray-200 focus:border-gray-300 focus:caret-gray-500 focus:outline-none data-[search=true]:pl-12 data-[error=true]:border-red-200 disabled:opacity-30;
-	}
+    input {
+        @apply w-full rounded border border-gray-100 bg-gray-300 px-4 py-4 text-sm placeholder:hidden focus:border-gray-300 focus:text-gray-200 focus:caret-gray-500 focus:outline-none disabled:opacity-30 data-[error=true]:border-red-200 data-[search=true]:pl-12;
+    }
 }
 
 @layer components {
-	.center-col {
-		@apply flex flex-col justify-center items-center text-center;
-	}
-	.main-container {
-		@apply max-w-[46rem] mx-auto;
-	}
+    .center-col {
+        @apply flex flex-col items-center justify-center text-center;
+    }
+    .main-container {
+        @apply mx-auto max-w-[46rem];
+    }
 }
 
 /* Scrollbar None */
 ::-webkit-scrollbar {
-	width: 0;
-	height: 0;
+    width: 0;
+    height: 0;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
-	-webkit-box-shadow: 0 0 0 1000px #111111 inset !important;
-	-webkit-text-fill-color: #ffffff !important;
+    -webkit-box-shadow: 0 0 0 1000px #111111 inset !important;
+    -webkit-text-fill-color: #ffffff !important;
 }
