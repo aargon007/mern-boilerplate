@@ -1,23 +1,43 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, maximum-scale=1"
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
-            rel="stylesheet"
-        />
-        <title>Vite + React + TS</title>
-    </head>
 
-    <body>
-        <div id="root"></div>
-        <script type="module" src="/src/main.tsx"></script>
-    </body>
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="author" content="Md Muhaiminul" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <title>MERNN Turbo-repo boilerplate</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <!-- iphone -->
+    <script type="text/javascript">
+        (function (doc) {
+
+            var addEvent = 'addEventListener',
+                type = 'gesturestart',
+                qsa = 'querySelectorAll',
+                scales = [1, 1],
+                meta = qsa in doc ? doc[qsa]('meta[name=viewport]') : [];
+
+            function fix() {
+                meta.content = 'width=device-width,minimum-scale=' + scales[0] + ',maximum-scale=' + scales[1];
+                doc.removeEventListener(type, fix, true);
+            }
+
+            if ((meta = meta[meta.length - 1]) && addEvent in doc) {
+                fix();
+                scales = [.25, 1.6];
+                doc[addEvent](type, fix, true);
+            }
+
+        }(document));
+    </script>
+</body>
+
 </html>
