@@ -11,24 +11,24 @@ const router = express.Router();
 
 // create user
 router.post(
-  '/register',
-  validateRequest(createUserValidationSchema),
-  UserControllers.createUser,
+    '/register',
+    validateRequest(createUserValidationSchema),
+    UserControllers.createUser
 );
 
 // login
 router.post(
-  '/login',
-  validateRequest(AuthValidation.loginValidationSchema),
-  AuthControllers.loginUser,
+    '/login',
+    validateRequest(AuthValidation.loginValidationSchema),
+    AuthControllers.loginUser
 );
 
 // change password
 router.post(
-  '/change-password',
-  auth(USER_ROLE.admin, USER_ROLE.user),
-  validateRequest(AuthValidation.changePasswordValidationSchema),
-  AuthControllers.changePassword,
+    '/change-password',
+    auth(USER_ROLE.admin, USER_ROLE.user),
+    validateRequest(AuthValidation.changePasswordValidationSchema),
+    AuthControllers.changePassword
 );
 
 export const UserRoutes = router;

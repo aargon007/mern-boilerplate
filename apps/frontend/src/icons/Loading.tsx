@@ -1,5 +1,5 @@
-import { SVGProps } from "react";
-interface Props extends SVGProps<SVGSVGElement> { }
+import { SVGProps } from 'react';
+interface Props extends SVGProps<SVGSVGElement> {}
 
 export default function Loading({ className, ...props }: Props) {
     return (

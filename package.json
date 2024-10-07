@@ -5,7 +5,7 @@
     "dev": "dotenv -- turbo dev",
     "build": "dotenv turbo -- build",
     "start": "dotenv -- turbo start",
-    "live": "node apps/server/dist",
+    "live": "dotenv -- turbo start --filter=server",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prettier": "prettier --write --ignore-unknown ."
