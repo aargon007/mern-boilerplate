@@ -8,7 +8,16 @@ module.exports = {
     ],
     ignorePatterns: ['dist', '.eslintrc.cjs'],
     parser: '@typescript-eslint/parser',
-    plugins: ['react-refresh'],
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+        ecmaVersion: 2020,
+        globals: globals.browser
+    },
+    plugins: {
+        'react-hooks': reactHooks,
+        'react-refresh': reactRefresh
+    },
+    // plugins: ['react-refresh'],
     rules: {
         '@typescript-eslint/no-explicit-any': 'off',
         'no-unused-vars': 'off',
