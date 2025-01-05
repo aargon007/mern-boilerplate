@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router';
-import DashboardLayout from '../layouts/Dashboard/DashboardLayout';
+import DashboardLayout from '../layouts/dashboard/DashboardLayout';
 import RootLayout from '../layouts/Home/RootLayout';
-import DashboardPage from '../pages/Dashbaord/DashboardPage';
-import Home from '../pages/Home/Home';
+import DashboardPage from '../pages/DashboardPage';
+import Home from '../pages/Homepage';
 import ProtectedRoute from './ProtectedRoute';
 
 const Routes = createBrowserRouter([
