@@ -1,3 +1,4 @@
+import Hero from '@/components/home/Hero';
 import NavBar from '@/components/shared/NavBar';
 
 const Homepage = () => {
@@ -5,9 +6,7 @@ const Homepage = () => {
         <div>
             <NavBar />
 
-            <div className="grid grid-cols-3">
-                
-            </div>
+            <Hero />
         </div>
     );
 };

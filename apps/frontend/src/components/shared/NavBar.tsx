@@ -15,8 +15,8 @@ const NavBar = () => {
                 </li>
             </ul>
 
-            <h2>MERN Turbo Boilerplate</h2>
-           
+            <h2>Aargon Inc.</h2>
+
             <ul className="flex list-none items-center justify-between gap-x-5">
                 <li>
                     <Link to="/">Home</Link>
