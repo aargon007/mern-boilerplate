@@ -2,7 +2,7 @@ import CancelIcon from '@/icons/CancelIcon';
 import Loading from '@/icons/Loading';
 import { cn } from '@/utils/cn';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 // variants button
 const buttonVariants = cva(

@@ -1,5 +1,5 @@
 import Button from '@/components/ui/Button';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 const Home = () => {
     return (
@@ -8,7 +8,7 @@ const Home = () => {
             <nav className="flex h-[80px] items-center justify-between px-5">
                 <ul className="flex list-none items-center justify-between gap-x-5">
                     <li>
-                        <Link to="/">Home</Link>
+                        <Link  to="/">Home</Link>
                     </li>
                     <li>
                         <Link to="/">Components</Link>
