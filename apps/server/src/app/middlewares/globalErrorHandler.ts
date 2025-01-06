@@ -6,7 +6,7 @@ import handleCastError from '../errors/handleCastError';
 import handleDuplicateError from '../errors/handleDuplicateError';
 import handleValidationError from '../errors/handleValidationError';
 import handleZodError from '../errors/handleZodError';
-import { TErrorSources } from '../interface/error';
+import { TGenericErrorResponse } from '../interface/error';
 
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     //setting default values
@@ -14,33 +14,28 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     let message = 'Something went wrong!';
     let errorMessage: string = err;
     let errorDetails: string | null = err;
+
+    const assignErrorDetails = (simplifiedError: TGenericErrorResponse) => {
+        statusCode = simplifiedError.statusCode;
+        message = simplifiedError.message;
+        errorMessage = simplifiedError.errorMessage;
+    };
+
     // zod error
     if (err instanceof ZodError) {
-        const simplifiedError = handleZodError(err);
-        statusCode = simplifiedError?.statusCode;
-        message = simplifiedError?.message;
-        errorMessage = simplifiedError?.errorMessage;
+        assignErrorDetails(handleZodError(err));
 
         // valiadtion error
     } else if (err?.name === 'ValidationError') {
-        const simplifiedError = handleValidationError(err);
-        statusCode = simplifiedError?.statusCode;
-        message = simplifiedError?.message;
-        errorMessage = simplifiedError?.errorMessage;
+        assignErrorDetails(handleValidationError(err));
 
         // cast error
     } else if (err?.name === 'CastError') {
-        const simplifiedError = handleCastError(err);
-        statusCode = simplifiedError?.statusCode;
-        message = simplifiedError?.message;
-        errorMessage = simplifiedError?.errorMessage;
+        assignErrorDetails(handleCastError(err));
 
         // data dupication error
     } else if (err?.code === 11000) {
-        const simplifiedError = handleDuplicateError(err);
-        statusCode = simplifiedError?.statusCode;
-        message = simplifiedError?.message;
-        errorMessage = simplifiedError?.errorMessage;
+        assignErrorDetails(handleDuplicateError(err));
 
         // app error
     } else if (err instanceof AppError) {
@@ -54,7 +49,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     }
 
     // returned response
-    return res.status(statusCode).json({
+    res.status(statusCode).json({
         success: false,
         statusCode,
         message,
