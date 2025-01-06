@@ -11,21 +11,19 @@ const NavBar = () => {
                     <Link to="/components">Components</Link>
                 </li>
                 <li>
-                    <Link to="/docs">Docs</Link>
+                    <Link to="/docs">Documentation</Link>
                 </li>
             </ul>
 
             <h2>Aargon Inc.</h2>
 
             <ul className="flex list-none items-center justify-between gap-x-5">
+                <li></li>
                 <li>
-                    <Link to="/">Home</Link>
+                    <Link target='_blank' to="http://localhost:5000/">API</Link>
                 </li>
                 <li>
-                    <Link to="/components">Components</Link>
-                </li>
-                <li>
-                    <Link to="/docs">Docs</Link>
+                    <Link to="/docs">API Documentation</Link>
                 </li>
             </ul>
         </nav>

@@ -4,18 +4,24 @@ import RootLayout from '../layouts/RootLayout';
 import DashboardPage from '../pages/DashboardPage';
 import Home from '../pages/Homepage';
 import ProtectedRoute from './ProtectedRoute';
+import Documentation from '@/pages/Boilerplate/Documentation';
+import ErrorPage from '@/components/shared/ErrorPage';
 
 const Routes = createBrowserRouter([
     {
         path: '/',
         element: <RootLayout />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '/',
                 element: <Home />
+            },
+            {
+                path: '/docs',
+                element: <Documentation />
             }
         ]
-        // errorElement: <LoadingPage />
     },
     // {
     //     path: "/signin",
