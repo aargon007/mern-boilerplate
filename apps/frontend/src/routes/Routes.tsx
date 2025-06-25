@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router';
-import DashboardLayout from '../layouts/DashboardLayout';
-import RootLayout from '../layouts/RootLayout';
-import DashboardPage from '../pages/DashboardPage';
-import Home from '../pages/Homepage';
-import ProtectedRoute from './ProtectedRoute';
-import Documentation from '@/pages/Boilerplate/Documentation';
 import ErrorPage from '@/components/shared/ErrorPage';
+import DashboardLayout from '@/layouts/DashboardLayout';
+import RootLayout from '@/layouts/RootLayout';
+import ProtectedRoute from './ProtectedRoute';
+import Homepage from '@/pages/Homepage';
+import DashboardPage from '@/pages/DashboardPage';
+import Documentation from '@/pages/Boilerplate/Documentation';
 
 const Routes = createBrowserRouter([
     {
@@ -15,7 +15,7 @@ const Routes = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home />
+                element: <Homepage />
             },
             {
                 path: '/docs',
@@ -23,10 +23,6 @@ const Routes = createBrowserRouter([
             }
         ]
     },
-    // {
-    //     path: "/signin",
-    //     element: <Signin />
-    // },
     {
         path: '/dashboard',
         element: (
