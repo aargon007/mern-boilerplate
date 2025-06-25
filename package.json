@@ -4,8 +4,10 @@
   "scripts": {
     "dev": "dotenv -- turbo dev",
     "build": "dotenv turbo -- build",
+    "build:frontend": "dotenv -- turbo build --filter=frontend",
+    "build:server": "dotenv -- turbo build --filter=server",
     "start": "dotenv -- turbo start",
-    "live": "dotenv -- turbo start --filter=server",
+    "start:server": "dotenv -- turbo start --filter=server",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prettier": "prettier --write --ignore-unknown .",
