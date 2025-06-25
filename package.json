@@ -8,7 +8,8 @@
     "live": "dotenv -- turbo start --filter=server",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prettier": "prettier --write --ignore-unknown ."
+    "prettier": "prettier --write --ignore-unknown .",
+    "upgrade:all": "yarn upgrade-interactive --latest"
   },
   "keywords": [
     "MERN",
@@ -31,7 +32,7 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "npm@11.0.0",
+  "packageManager": "yarn@1.22.22",
   "workspaces": [
     "apps/*",
     "packages/*"
