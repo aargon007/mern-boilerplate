@@ -5,7 +5,7 @@ import { TLoginUser } from './auth.interface';
 import { User } from '../user/user.model';
 import AppError from '../../errors/AppError';
 import config from '../../../config';
-import { createToken } from './auth.utils';
+import { createToken } from '../../../helpers/jwtHelpers';
 
 // login user
 const loginUser = async (payload: TLoginUser) => {
@@ -32,7 +32,7 @@ const loginUser = async (payload: TLoginUser) => {
     const accessToken = createToken(
         jwtPayload,
         config.jwt_access_secret as string,
-        config.jwt_access_expires_in as string
+        config.jwt_access_expires_in
     );
     // generate refresh token
     // const refreshToken = createToken(

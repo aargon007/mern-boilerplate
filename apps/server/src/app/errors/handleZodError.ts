@@ -12,7 +12,7 @@ const handleZodError = (err: ZodError): TGenericErrorResponse => {
     // make plain error message
     const errorMessage: string =
         errorSources
-            .map((error) => `${error.path} is ${error.message.toLowerCase()}`)
+            .map((error) => error.message.toLowerCase())
             .join('. ') + '.';
     const statusCode = 400;
 

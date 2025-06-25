@@ -7,7 +7,7 @@ import path from 'path';
 import config from './config';
 import router from './app/routes';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
-import { configureDevelopmentApp, configureProductionApp } from './app/utils/apiHomepage';
+import { configureDevelopmentApp, configureProductionApp } from './shared/apiHomepage';
 
 const app: Application = express();
 

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import httpStatus from 'http-status';
 import jwt, { JwtPayload } from 'jsonwebtoken';
+import httpStatus from 'http-status';
 import catchAsync from '../../shared/catchAsync';
 import AppError from '../errors/AppError';
 import config from '../../config';

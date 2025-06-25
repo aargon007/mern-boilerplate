@@ -13,7 +13,7 @@ export function configureProductionApp(app: Application) {
 
 // api homepage for development
 export function configureDevelopmentApp(app: Application) {
-    const publicPath = path.join(__dirname, "../../../" + 'public');
+    const publicPath = path.join(__dirname, "../../" + 'public');
 
     app.use(express.static(publicPath));
 
