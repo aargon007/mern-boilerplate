@@ -1,10 +1,10 @@
-import { baseApi } from './baseApi';
+import api from "./apiSlice";
 
-const userApi = baseApi.injectEndpoints({
+const userApi = api.injectEndpoints({
     overrideExisting: true,
     endpoints: (builder) => ({
-        // send otp
-        sendOtp: builder.mutation({
+        // POST,PUT
+        login: builder.mutation({
             query: (data) => {
                 // console.log(data);
                 return {
@@ -12,53 +12,34 @@ const userApi = baseApi.injectEndpoints({
                     method: 'POST',
                     body: data
                 };
-            }
+            },
+            invalidatesTags: ['user']
         }),
-        // verify otp
-        verifyOTP: builder.mutation({
-            query: (data) => {
-                // console.log(data);
-
-                return {
-                    url: `/auth/verify-otp`,
-                    method: 'POST',
-                    body: data
-                };
-            }
-        }),
-        //activvate package
-        setPackage: builder.mutation({
-            query: (data) => {
-                console.log(data);
-
-                return {
-                    url: '/subscription/active-package',
-                    method: 'POST',
-                    body: data
-                };
-            }
-        }),
-        // emergency log out
-        logout: builder.mutation({
+        // GET user data
+        getUser: builder.query({
             query: () => ({
-                url: `/auth/logout`,
-                method: 'POST'
-            })
-        })
-        // get user data
-        // getUser: builder.query({
-        //     query: () => ({
-        //         url: "/auth"
-        //     }),
-        //     providesTags: ["user"]
-        // }),
+                url: "/auth",
+                method: "GET"
+            }),
+            // async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+            //     try {
+            //         const result = (await queryFulfilled).data;
+            //         dispatch(setUser(result?.data?.userData));
+
+            //         console.log("user data synced.");
+            //     } catch (error) {
+            //         console.error("Failed to fetch user data:", error);
+            //     }
+            // },
+            providesTags: ["user"]
+        }),
+
     })
 });
 
 export const {
-    useSendOtpMutation,
-    useVerifyOTPMutation,
-    useSetPackageMutation
+    useLoginMutation,
+    useGetUserQuery
 } = userApi;
 
 export default userApi;
