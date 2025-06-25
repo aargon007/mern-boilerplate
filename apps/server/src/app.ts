@@ -4,7 +4,7 @@ import httpStatus from 'http-status';
 import cors from 'cors';
 import path from 'path';
 
-import config from './app/config';
+import config from './config';
 import router from './app/routes';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
 import { configureDevelopmentApp, configureProductionApp } from './app/utils/apiHomepage';
