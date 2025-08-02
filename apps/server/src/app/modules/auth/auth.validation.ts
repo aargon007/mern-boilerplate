@@ -3,8 +3,8 @@ import { z } from 'zod';
 // login data validation schema
 const loginValidationSchema = z.object({
     body: z.object({
-        username: z.string({ required_error: 'username is required.' }),
-        password: z.string({ required_error: 'Password is required' })
+        username: z.string({ error: 'username is required' }),
+        password: z.string({ error: 'Password is required' })
     })
 });
 
@@ -12,7 +12,7 @@ const loginValidationSchema = z.object({
 const changePasswordValidationSchema = z.object({
     body: z.object({
         currentPassword: z.string({
-            required_error: 'Current Password is required'
+            error: 'Current Password is required'
         }),
         newPassword: z
             .string()
@@ -28,7 +28,7 @@ const changePasswordValidationSchema = z.object({
 const refreshTokenValidationSchema = z.object({
     cookies: z.object({
         refreshToken: z.string({
-            required_error: 'Refresh token is required!'
+            error: 'Refresh token is required!'
         })
     })
 });

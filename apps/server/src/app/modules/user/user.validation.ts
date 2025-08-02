@@ -8,9 +8,11 @@ export const createUserValidationSchema = z.object({
             .min(1, 'Username is required.')
             .max(30, 'Username must be at most 30 characters long.'),
         email: z
-            .string()
-            .trim()
-            .email('Invalid email address.'),
+            .email({error:"Email is required."})
+            .min(1, 'Email is required.')
+            .max(50, 'Email must be at most 50 characters long.')
+            .toLowerCase()
+            .trim(),
         password: z
             .string()
             .trim()
