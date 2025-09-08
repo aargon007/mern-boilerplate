@@ -13,8 +13,7 @@
         "moduleDetection": "force",
         "noEmit": true,
         "paths": {
-            "@/*": ["./src/*"],
-            "react": ["./node_modules/@types/react"]
+            "@/*": ["./src/*"]
         },
 
         /* Linting */

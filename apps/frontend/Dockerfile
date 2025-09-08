@@ -1,4 +1,6 @@
-# 1. Base image
+# Multi-stage build for Turbo monorepo React frontend
+
+# 1. Base image with turbo
 FROM node:22-alpine AS base
 WORKDIR /app
 RUN apk add --no-cache libc6-compat

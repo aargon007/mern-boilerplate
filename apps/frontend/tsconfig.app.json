@@ -15,8 +15,7 @@
         "noEmit": true,
         "jsx": "react-jsx",
         "paths": {
-            "@/*": ["./src/*"],
-            "react": ["./node_modules/@types/react"]
+            "@/*": ["./src/*"]
         },
 
         /* Linting */
