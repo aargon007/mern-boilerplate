@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  # Backend Server (Development)
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      target: server-dev
+    container_name: mern-turbo-server-dev
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: ${PORT:-5000}
+      DB_URI: ${DB_URI}
+      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET:-dev-jwt-access-secret}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-dev-jwt-refresh-secret}
+      JWT_ACCESS_EXPIRES_IN: ${JWT_ACCESS_EXPIRES_IN:-15m}
+      JWT_REFRESH_EXPIRES_IN: ${JWT_REFRESH_EXPIRES_IN:-7d}
+      BCRYPT_SALT_ROUNDS: ${BCRYPT_SALT_ROUNDS:-10}
+      CLIENT_ORIGIN: ${CLIENT_ORIGIN:-http://localhost:5173}
+    ports:
+      - "5000:5000"
+    networks:
+      - mern-turbo-dev-network
+    volumes:
+      - ./apps/server/src:/app/apps/server/src
+      - ./apps/server/package.json:/app/apps/server/package.json
+      - /app/node_modules
+      - /app/apps/server/node_modules
+
+  # Frontend Application (Development)
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      target: frontend-dev
+    container_name: mern-turbo-frontend-dev
+    restart: unless-stopped
+    environment:
+      VITE_BASE_API: ${VITE_BASE_API:-http://localhost:5000/api/v1}
+    ports:
+      - "5173:5173"
+    depends_on:
+      - server
+    networks:
+      - mern-turbo-dev-network
+    volumes:
+      - ./apps/frontend/src:/app/apps/frontend/src
+      - ./apps/frontend/package.json:/app/apps/frontend/package.json
+      - /app/node_modules
+      - /app/apps/frontend/node_modules
+
+networks:
+  mern-turbo-dev-network:
+    driver: bridge
