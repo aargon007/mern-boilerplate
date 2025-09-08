@@ -26,21 +26,6 @@ docker-compose logs -f
 docker-compose down
 ```
 
-### 4. Development Mode
-
-For development with hot reload:
-
-```bash
-# Start development environment
-docker-compose -f docker-compose.dev.yml --env-file .env.docker up -d
-
-# View logs
-docker-compose -f docker-compose.dev.yml logs -f
-
-# Stop development environment
-docker-compose -f docker-compose.dev.yml down
-```
-
 ## Available Services
 
 | Service  | Port   | Description                  |
@@ -56,11 +41,14 @@ docker-compose -f docker-compose.dev.yml down
 ### Building Images
 
 ```bash
+# build server image
+docker-compose build server
+
+# build frontend image
+docker-compose build frontend
+
 # Build all images
 docker-compose build
-
-# Build specific service
-docker-compose build server
 
 # Build without cache
 docker-compose build --no-cache
@@ -71,6 +59,9 @@ docker-compose build --no-cache
 ```bash
 # Start services
 docker-compose up -d
+
+# Start specific service
+docker-compose up server
 
 # Stop services
 docker-compose stop
