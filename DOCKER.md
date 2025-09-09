@@ -2,30 +2,6 @@
 
 This guide explains how to run the MERN Turbo Boilerplate using Docker.
 
-## Prerequisites
-
-- Docker Engine 20.10+
-- Docker Compose 2.0+
-- At least 4GB of available RAM
-
-## Quick Start
-
-### 3. Production Deployment
-
-Build and run all services:
-
-```bash
-# Build and start all services
-# docker-compose --env-file .env.docker up -d
-docker-compose -f docker-compose.yml up -d
-
-# View logs
-docker-compose logs -f
-
-# Stop all services
-docker-compose down
-```
-
 ## Available Services
 
 | Service  | Port   | Description                  |
