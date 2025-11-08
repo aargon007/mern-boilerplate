@@ -7,7 +7,7 @@ A modern, production-ready MERN stack boilerplate with Turborepo, TypeScript, an
 ### Local Development
 
 ```bash
-git clone https://github.com/aargon007/mern-turbo-boilerplate
+git clone https://github.com/aargon007/mern-boilerplate
 cd mern-turbo-boilerplate
 yarn install
 yarn dev

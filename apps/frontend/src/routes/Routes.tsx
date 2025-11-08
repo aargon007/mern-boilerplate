@@ -7,6 +7,7 @@ import Homepage from '@/pages/Homepage';
 import DashboardPage from '@/pages/DashboardPage';
 import Documentation from '@/pages/Boilerplate/Documentation';
 
+// data mode : https://reactrouter.com/start/data/installation
 const Routes = createBrowserRouter([
     {
         path: '/',
