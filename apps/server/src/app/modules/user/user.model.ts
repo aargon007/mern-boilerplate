@@ -58,7 +58,7 @@ userSchema.pre('save', async function (next) {
 
     user.passwordChangedAt = new Date();
 
-    next();
+    // next();
 });
 
 // hide password, password history, change password date before sending response
