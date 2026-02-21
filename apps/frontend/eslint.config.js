@@ -2,8 +2,8 @@ import js from '@eslint/js';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import { defineConfig, globalIgnores } from 'eslint/config';
-import globals from 'globals';
 import tseslint from 'typescript-eslint';
+import globals from 'globals';
 
 export default defineConfig([
     globalIgnores(['dist']),
@@ -20,8 +20,8 @@ export default defineConfig([
             globals: globals.browser
         },
         rules: {
-            '@typescript-eslint/no-explicit-any': 'off',
             'no-unused-vars': 'off',
+            '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/no-unused-vars': [
                 'warn',
                 { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }
@@ -38,14 +38,3 @@ export default defineConfig([
         // }
     }
 ]);
-
-// module.exports = {
-//     root: true,
-//     env: { browser: true, es2020: true },
-//     extends: [
-//         'eslint:recommended',
-//         'plugin:@typescript-eslint/recommended',
-//         'plugin:react-hooks/recommended'
-//     ],
-//     parser: '@typescript-eslint/parser',
-// };

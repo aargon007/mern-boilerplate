@@ -1,46 +1,57 @@
 @import "tailwindcss";
 
+@theme {
+    --color-primary: rgba(255, 255, 255, 1);
+    --color-background: #111111;
+    --color-foreground: #ffffff;
+    --radius-default: 8px;
+    --width-content: 46rem;
+}
+
 @layer base {
-    :root {
-        --primary: rgba(255, 255, 255, 1);
-
-        --radius: 8px;
+    body {
+        @apply font-sans;
     }
 
-    /* Default Styling */
+    /* Hide scrollbars */
     * {
-        @apply m-0 p-0 font-sans;
+        scrollbar-width: none;
+    }
+    ::-webkit-scrollbar {
+        display: none;
     }
 
-    input {
-        @apply w-full rounded border border-gray-100 bg-gray-300 px-4 py-4 text-sm placeholder:hidden focus:border-gray-300 focus:text-gray-200 focus:caret-gray-500 focus:outline-none disabled:opacity-30 data-[error=true]:border-red-200 data-[search=true]:pl-12;
+    /* Remove number input spinners */
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Autofill */
+    input:-webkit-autofill,
+    textarea:-webkit-autofill,
+    select:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 1000px var(--color-background) inset !important;
+        -webkit-text-fill-color: var(--color-foreground) !important;
     }
 }
 
 @layer components {
+    .input-base {
+        @apply w-full rounded border border-gray-100 bg-gray-300 px-4 py-4 text-sm
+        placeholder:text-gray-400
+        focus:border-gray-300 focus:text-gray-200 focus:caret-gray-500 focus:outline-none
+        disabled:opacity-30
+        data-[error=true]:border-red-200
+        data-[search=true]:pl-12;
+    }
+
     .center-col {
         @apply flex flex-col items-center justify-center text-center;
     }
+
     .main-container {
-        @apply mx-auto max-w-[46rem];
+        @apply mx-auto max-w-(--width-content);
     }
-}
-
-/* Scrollbar None */
-::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-}
-
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-input:-webkit-autofill,
-textarea:-webkit-autofill,
-select:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px #111111 inset !important;
-    -webkit-text-fill-color: #ffffff !important;
 }
