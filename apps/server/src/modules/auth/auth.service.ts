@@ -4,8 +4,8 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 import { TLoginUser } from './auth.interface';
 import { User } from '../user/user.model';
 import AppError from '../../errors/AppError';
-import config from '../../../config';
-import { createToken } from '../../../helpers/jwtHelpers';
+import config from './../../config';
+import { createToken } from './../../helpers/jwtHelpers';
 
 // login user
 const loginUser = async (payload: TLoginUser) => {

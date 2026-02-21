@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { ZodObject, ZodRawShape } from 'zod';
-import catchAsync from '../../shared/catchAsync';
+import catchAsync from './../shared/catchAsync';
 
 const validateRequest = (schema: ZodObject<ZodRawShape>) => {
     return catchAsync(

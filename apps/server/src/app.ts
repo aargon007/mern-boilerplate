@@ -5,8 +5,8 @@ import cors from 'cors';
 import path from 'path';
 
 import config from './config';
-import router from './app/routes';
-import globalErrorHandler from './app/middlewares/globalErrorHandler';
+import router from './routes';
+import globalErrorHandler from './middlewares/globalErrorHandler';
 import { configureDevelopmentApp, configureProductionApp } from './shared/apiHomepage';
 
 const app: Application = express();

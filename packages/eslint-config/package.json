@@ -12,6 +12,10 @@
     "eslint": "^9.39.1",
     "typescript": "^5.9.3"
   },
+  "devDependencies": {
+    "eslint": "^9.39.1",
+    "typescript": "^5.9.3"
+  },
   "publishConfig": {
     "access": "public"
   }
