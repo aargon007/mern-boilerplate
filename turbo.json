@@ -1,15 +1,16 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
   "globalDependencies": [
-    ".env"
+    ".env",
+    ".gitignore",
+    "tsconfig.json"
   ],
   "tasks": {
     "dev": {
       "cache": false,
       "persistent": true,
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": [],
       "inputs": [
         "$TURBO_DEFAULT$",
         ".env.development.local",
@@ -35,7 +36,7 @@
     },
     "start": {
       "dependsOn": [
-        "^start"
+        "build"
       ],
       "inputs": [
         "$TURBO_DEFAULT$",
@@ -44,6 +45,10 @@
         ".env.local",
         ".env"
       ]
+    },
+    "lint": {
+      "outputs": [],
+      "cache": true
     },
     "live": {
       "inputs": [

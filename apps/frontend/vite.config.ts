@@ -19,7 +19,7 @@ export default defineConfig({
         watch: {
             usePolling: true
         },
-        strictPort: true,
-        port: 3000
+        strictPort: false,
+        port: parseInt(process.env.VITE_PORT || '5173', 10)
     }
 });
