@@ -12,7 +12,7 @@
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prettier": "prettier --write --ignore-unknown .",
-    "upgrade:all": "yarn upgrade-interactive --latest"
+    "upgrade:all": "pnpm up --recursive --latest"
   },
   "keywords": [
     "MERN",
@@ -26,21 +26,14 @@
   ],
   "author": "Md Muhaiminul",
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
+    "@repo/eslint-config": "^0.0.0",
+    "@repo/typescript-config": "^0.0.0",
     "dotenv-cli": "^11.0.0",
     "prettier": "^3.8.1",
     "turbo": "^2.8.10"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22.0.0"
   },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
-  "workspaces": {
-    "packages": [
-      "apps/*",
-      "packages/*"
-    ],
-    "nohoist": []
-  }
+  "packageManager": "pnpm@9.0.0"
 }
