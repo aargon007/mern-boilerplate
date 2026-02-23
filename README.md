@@ -9,8 +9,8 @@ A modern, production-ready MERN stack boilerplate with Turborepo, TypeScript, an
 ```bash
 git clone https://github.com/aargon007/mern-boilerplate
 cd mern-turbo-boilerplate
-yarn install
-yarn dev
+pnpm install
+pnpm dev
 ```
 
 ### Docker Deployment

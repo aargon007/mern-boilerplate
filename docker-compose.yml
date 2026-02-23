@@ -33,27 +33,10 @@ services:
     container_name: mern-turbo-frontend
     restart: unless-stopped
     environment:
-      VITE_BASE_API: ${VITE_BASE_API:-http://localhost:5000/api/v1}
+      VITE_BASE_API: ${VITE_BASE_API}
     ports:
-      - "3000:3000"
+      - "4173:4173"
     depends_on:
-      - server
-    networks:
-      - mern-turbo-network
-
-  # Nginx Reverse Proxy (Optional)
-  nginx:
-    image: nginx:alpine
-    container_name: mern-turbo-nginx
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./docker/nginx/ssl:/etc/nginx/ssl:ro
-    depends_on:
-      - frontend
       - server
     networks:
       - mern-turbo-network

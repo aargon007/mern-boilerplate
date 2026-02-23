@@ -1,29 +1,50 @@
 # Multi-stage build for Turbo monorepo React frontend
 
-# 1. Base image with turbo
 FROM node:22-alpine AS base
-WORKDIR /app
-RUN apk add --no-cache libc6-compat
 
-# 2. Prune step (create minimal workspace for frontend)
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+# Stage 1: Prune the monorepo
 FROM base AS pruner
-COPY . .
-RUN yarn global add turbo
-RUN turbo prune --scope=frontend --docker
-
-# 3. Install & Build
-FROM base AS builder
 WORKDIR /app
-COPY --from=pruner /app/out/json/ ./
-RUN yarn install --frozen-lockfile
 
-COPY --from=pruner /app/out/full/ ./
-RUN yarn turbo build --filter=frontend...
+RUN npm install -g turbo
+COPY . .
+# "frontend" must match the "name" field in apps/frontend/package.json
+RUN turbo prune frontend --docker
 
-# 4. Production with Nginx
-FROM nginx:alpine AS runner
-WORKDIR /usr/share/nginx/html
-COPY apps/frontend/nginx.conf /etc/nginx/nginx.conf
-COPY --from=builder /app/apps/frontend/dist ./
-EXPOSE 3000
-CMD ["nginx", "-g", "daemon off;"]
+# Stage 2: Install dependencies
+FROM base AS installer
+WORKDIR /app
+
+# Copy pruned lockfile + workspace manifests (no source yet)
+COPY --from=pruner /app/out/json/ .
+COPY --from=pruner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY --from=pruner /app/out/pnpm-workspace.yaml ./pnpm-workspace.yaml
+
+# Install only the deps needed for this app
+RUN pnpm install --frozen-lockfile
+
+# Copy pruned source files
+COPY --from=pruner /app/out/full/ .
+
+# Build the frontend app
+ARG VITE_BASE_API
+ENV VITE_BASE_API=$VITE_BASE_API
+RUN pnpm turbo run build --filter=frontend...
+
+# Stage 3: Run vite preview
+FROM base AS runner
+WORKDIR /app
+
+COPY --from=installer /app/apps/frontend/dist ./apps/frontend/dist
+COPY --from=installer /app/apps/frontend/package.json ./apps/frontend/package.json
+COPY --from=installer /app/apps/frontend/vite.config.ts ./apps/frontend/vite.config.ts
+COPY --from=installer /app/node_modules ./node_modules
+COPY --from=installer /app/package.json ./package.json
+
+WORKDIR /app/apps/frontend
+
+EXPOSE 4173
+CMD ["pnpm", "start"]
