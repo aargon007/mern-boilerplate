@@ -3,8 +3,7 @@
   "ui": "tui",
   "globalDependencies": [
     ".env",
-    ".gitignore",
-    "tsconfig.json"
+    ".gitignore"
   ],
   "tasks": {
     "dev": {
@@ -49,15 +48,6 @@
     "lint": {
       "outputs": [],
       "cache": true
-    },
-    "live": {
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env.production.local",
-        ".env.production",
-        ".env.local",
-        ".env"
-      ]
     }
   }
 }

@@ -1,5 +1,6 @@
 import { SVGProps } from 'react';
-interface Props extends SVGProps<SVGSVGElement> {}
+
+type Props = SVGProps<SVGSVGElement>;
 
 export default function Loading({ className, ...props }: Props) {
     return (

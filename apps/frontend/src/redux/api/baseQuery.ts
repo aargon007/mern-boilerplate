@@ -32,7 +32,6 @@ export const baseQueryWithRefreshToken: BaseQueryFn<
     FetchArgs,
     BaseQueryApi,
     DefinitionType
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 > = async (args, api, extraOptions): Promise<any> => {
     // wait until the mutex is available without locking it
     await mutex.waitForUnlock()
