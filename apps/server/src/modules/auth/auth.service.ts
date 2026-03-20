@@ -1,11 +1,11 @@
 import bcrypt from 'bcrypt';
 import httpStatus from 'http-status';
-import jwt, { JwtPayload } from 'jsonwebtoken';
-import { TLoginUser } from './auth.interface';
-import { User } from '../user/user.model';
-import AppError from '../../errors/AppError';
-import config from './../../config';
-import { createToken } from './../../helpers/jwtHelpers';
+import { JwtPayload } from 'jsonwebtoken';
+import { TLoginUser } from '@/modules/auth/auth.interface';
+import { createToken } from '@/helpers/jwtHelpers';
+import { User } from '@/modules/user/user.model';
+import AppError from '@/errors/AppError';
+import config from '@/config';
 
 // login user
 const loginUser = async (payload: TLoginUser) => {

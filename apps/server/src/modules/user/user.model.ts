@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 import bcrypt from 'bcrypt';
-import config from './../../config';
-import { TUser, UserModel } from './user.interface';
+import config from '@/config';
+import { TUser, UserModel } from '@/modules/user/user.interface';
 
 // user schema
 const userSchema = new Schema<TUser>(

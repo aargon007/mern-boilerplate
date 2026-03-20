@@ -1,7 +1,7 @@
 import httpStatus from 'http-status';
-import catchAsync from './../../shared/catchAsync';
-import sendResponse from './../../shared/sendResponse';
-import { AuthServices } from './auth.service';
+import catchAsync from '@/shared/catchAsync';
+import sendResponse from '@/shared/sendResponse';
+import { AuthServices } from '@/modules/auth/auth.service';
 
 // login user
 const loginUser = catchAsync(async (req, res) => {

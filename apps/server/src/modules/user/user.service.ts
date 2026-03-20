@@ -1,5 +1,5 @@
-import { TUser } from './user.interface';
-import { User } from './user.model';
+import { TUser } from '@/modules/user/user.interface';
+import { User } from '@/modules/user/user.model';
 
 // create password
 const createUserIntoDB = async (payload: TUser) => {

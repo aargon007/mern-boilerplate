@@ -1,11 +1,11 @@
-import express, { NextFunction, Request, Response } from 'express';
-import validateRequest from '../../middlewares/validateRequest';
-import { createUserValidationSchema } from '../user/user.validation';
-import { UserControllers } from '../user/user.controller';
-import { AuthValidation } from './auth.validation';
-import { AuthControllers } from './auth.controller';
-import auth from '../../middlewares/auth';
-import { USER_ROLE } from '../user/user.interface';
+import express from 'express';
+import validateRequest from '@/middlewares/validateRequest';
+import { createUserValidationSchema } from '@/modules/user/user.validation';
+import { UserControllers } from '@/modules/user/user.controller';
+import { AuthValidation } from '@/modules/auth/auth.validation';
+import { AuthControllers } from '@/modules/auth/auth.controller';
+import { USER_ROLE } from '@/modules/user/user.interface';
+import auth from '@/middlewares/auth';
 
 const router = express.Router();
 

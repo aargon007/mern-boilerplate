@@ -4,10 +4,10 @@ import httpStatus from 'http-status';
 import cors from 'cors';
 import path from 'path';
 
-import config from './config';
-import router from './routes';
-import globalErrorHandler from './middlewares/globalErrorHandler';
-import { configureDevelopmentApp, configureProductionApp } from './shared/apiHomepage';
+import config from '@/config';
+import router from '@/routes';
+import globalErrorHandler from '@/middlewares/globalErrorHandler';
+import { configureDevelopmentApp, configureProductionApp } from '@/shared/apiHomepage';
 
 const app: Application = express();
 
