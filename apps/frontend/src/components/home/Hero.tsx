@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from 'react-router';
 
 const Hero = () => {
     return (
@@ -35,16 +35,16 @@ const Hero = () => {
 
                     <div className="mt-10 flex items-center gap-x-6">
                         <Link
-                            to="https://turbo.build/repo/docs/getting-started"
+                            to="https://turborepo.dev/docs/getting-started"
                             target="_blank"
                             className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
                         >
                             Get started
                         </Link>
                         <Link
-                            to="https://turbo.build/repo/docs"
+                            to="https://turborepo.dev/docs"
                             target="_blank"
-                            className="text-sm font-semibold leading-6 text-white"
+                            className="text-sm leading-6 font-semibold text-white"
                         >
                             Learn more <span aria-hidden="true">→</span>
                         </Link>
@@ -54,19 +54,21 @@ const Hero = () => {
                 <div className="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
                     <div className="relative isolate overflow-hidden rounded-2xl bg-gray-800/50 p-5 sm:mx-auto sm:max-w-2xl sm:rounded-3xl lg:mx-0 lg:max-w-none">
                         <div className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
-                            <pre className="text-sm text-gray-300 text-left">
+                            <pre className="text-left text-sm text-gray-300">
                                 <code>
-                                    {`git clone https://github.com/aargon007/mern-turbo-boilerplate
+                                    {`git clone https://github.com/aargon007/mern-boilerplate
                                     
-cd mern-turbo-boilerplate
+cd mern-boilerplate
 
-npm install
+pnpm install
 
-npm run dev`}
+cp .env.example .env
+
+pnpm dev`}
                                 </code>
                             </pre>
                         </div>
-                        <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-gray-900/10" />
+                        <div className="pointer-events-none absolute inset-0 ring-1 ring-gray-900/10 ring-inset" />
                     </div>
                 </div>
             </div>

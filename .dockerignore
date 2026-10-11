@@ -117,3 +117,6 @@ docker-compose*.yml
 # Documentation
 docs/
 *.md
+
+.env.*
+!.env.example

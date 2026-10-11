@@ -6,19 +6,33 @@ export default function Documentation() {
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 items-center justify-between">
                         <div className="flex items-center gap-x-8">
-                            <span className="text-xl font-bold text-white">MERN Turbo Docs</span>
+                            <span className="text-xl font-bold text-white">
+                                MERN Turbo Docs
+                            </span>
                             <div className="hidden md:block">
                                 <div className="flex items-baseline space-x-4">
-                                    <a href="#getting-started" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                                    <a
+                                        href="#getting-started"
+                                        className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white"
+                                    >
                                         Getting Started
                                     </a>
-                                    <a href="#packages" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                                    <a
+                                        href="#packages"
+                                        className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white"
+                                    >
                                         Managing Packages
                                     </a>
-                                    <a href="#commands" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                                    <a
+                                        href="#commands"
+                                        className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white"
+                                    >
                                         Commands
                                     </a>
-                                    <a href="#guides" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                                    <a
+                                        href="#guides"
+                                        className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white"
+                                    >
                                         Guides
                                     </a>
                                 </div>
@@ -33,16 +47,17 @@ export default function Documentation() {
                 <div className="py-16">
                     {/* Getting Started Section */}
                     <section id="getting-started" className="mb-16">
-                        <h2 className="text-3xl font-bold text-white mb-8">
+                        <h2 className="mb-8 text-3xl font-bold text-white">
                             Getting Started
                         </h2>
                         <div className="rounded-lg bg-gray-800 p-6">
                             <pre className="text-sm text-gray-300">
                                 <code>
-                                    {`git clone https://github.com/aargon007/mern-turbo-boilerplate
-cd mern-turbo-boilerplate
-yarn install
-yarn dev`}
+                                    {`git clone https://github.com/aargon007/mern-boilerplate
+cd mern-boilerplate
+pnpm install
+cp .env.example .env
+pnpm dev`}
                                 </code>
                             </pre>
                         </div>
@@ -50,31 +65,33 @@ yarn dev`}
 
                     {/* Managing Packages Section */}
                     <section id="packages" className="mb-16">
-                        <h2 className="text-3xl font-bold text-white mb-8">
+                        <h2 className="mb-8 text-3xl font-bold text-white">
                             Managing Packages
                         </h2>
 
                         <div className="grid gap-6">
                             <div className="rounded-lg bg-gray-800/50 p-6">
-                                <h3 className="text-xl font-semibold text-white mb-4">
+                                <h3 className="mb-4 text-xl font-semibold text-white">
                                     Adding New Packages
                                 </h3>
-                                <p className="text-gray-300 mb-4">
+                                <p className="mb-4 text-gray-300">
                                     To add a new package to your apps folder:
                                 </p>
-                                <pre className="text-sm text-gray-300 bg-gray-900/50 p-4 rounded">
-                                    <code>yarn workspace appFolderName add packageName</code>
+                                <pre className="rounded bg-gray-900/50 p-4 text-sm text-gray-300">
+                                    <code>
+                                        pnpm --filter frontend add packageName
+                                    </code>
                                 </pre>
                             </div>
 
                             <div className="rounded-lg bg-gray-800/50 p-6">
-                                <h3 className="text-xl font-semibold text-white mb-4">
+                                <h3 className="mb-4 text-xl font-semibold text-white">
                                     Package Structure
                                 </h3>
-                                <p className="text-gray-300 mb-4">
+                                <p className="mb-4 text-gray-300">
                                     Recommended structure for new packages:
                                 </p>
-                                <pre className="text-sm text-gray-300 bg-gray-900/50 p-4 rounded">
+                                <pre className="rounded bg-gray-900/50 p-4 text-sm text-gray-300">
                                     <code>
                                         {`apps/
   ├── frontend/
@@ -83,7 +100,7 @@ yarn dev`}
   │   ├── tsconfig.json
   │
   ├── server
-  │   ├── app/
+  │   ├── src/
   │   ├── package.json
   │   ├── tsconfig.json   `}
                                     </code>
@@ -94,51 +111,61 @@ yarn dev`}
 
                     {/* Commands Section */}
                     <section id="commands" className="mb-16">
-                        <h2 className="text-3xl font-bold text-white mb-8">
+                        <h2 className="mb-8 text-3xl font-bold text-white">
                             Turbo Commands
                         </h2>
 
                         <div className="grid gap-6">
                             <div className="rounded-lg bg-gray-800/50 p-6">
-                                <h3 className="text-xl font-semibold text-white mb-4">
+                                <h3 className="mb-4 text-xl font-semibold text-white">
                                     Development
                                 </h3>
                                 <div className="grid gap-4">
                                     <div>
-                                        <p className="text-gray-300 mb-2">
+                                        <p className="mb-2 text-gray-300">
                                             Run all apps in development mode:
                                         </p>
-                                        <pre className="text-sm text-gray-300 bg-gray-900/50 p-4 rounded">
-                                            <code>turbo run dev</code>
+                                        <pre className="rounded bg-gray-900/50 p-4 text-sm text-gray-300">
+                                            <code>pnpm turbo run dev</code>
                                         </pre>
                                     </div>
                                     <div>
-                                        <p className="text-gray-300 mb-2">
+                                        <p className="mb-2 text-gray-300">
                                             Run specific app:
                                         </p>
-                                        <pre className="text-sm text-gray-300 bg-gray-900/50 p-4 rounded">
-                                            <code>turbo run dev --filter=web...</code>
+                                        <pre className="rounded bg-gray-900/50 p-4 text-sm text-gray-300">
+                                            <code>
+                                                pnpm turbo run dev
+                                                --filter=frontend...
+                                            </code>
                                         </pre>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="rounded-lg bg-gray-800/50 p-6">
-                                <h3 className="text-xl font-semibold text-white mb-4">
+                                <h3 className="mb-4 text-xl font-semibold text-white">
                                     Building
                                 </h3>
                                 <div className="grid gap-4">
                                     <div>
-                                        <p className="text-gray-300 mb-2">
+                                        <p className="mb-2 text-gray-300">
                                             Build all packages:
                                         </p>
-                                        <pre className="text-sm text-gray-300 bg-gray-900/50 p-4 rounded"><code>turbo run build</code></pre>
+                                        <pre className="rounded bg-gray-900/50 p-4 text-sm text-gray-300">
+                                            <code>pnpm turbo run build</code>
+                                        </pre>
                                     </div>
                                     <div>
-                                        <p className="text-gray-300 mb-2">
+                                        <p className="mb-2 text-gray-300">
                                             Build specific package:
                                         </p>
-                                        <pre className="text-sm text-gray-300 bg-gray-900/50 p-4 rounded"><code>turbo run build --filter=web</code></pre>
+                                        <pre className="rounded bg-gray-900/50 p-4 text-sm text-gray-300">
+                                            <code>
+                                                pnpm turbo run build
+                                                --filter=frontend
+                                            </code>
+                                        </pre>
                                     </div>
                                 </div>
                             </div>
@@ -147,30 +174,55 @@ yarn dev`}
 
                     {/* Additional Guides Section */}
                     <section id="guides" className="mb-16">
-                        <h2 className="text-3xl font-bold text-white mb-8">Additional Guides</h2>
+                        <h2 className="mb-8 text-3xl font-bold text-white">
+                            Additional Guides
+                        </h2>
 
                         <div className="grid gap-6">
                             <div className="rounded-lg bg-gray-800/50 p-6">
-                                <h3 className="text-xl font-semibold text-white mb-4">Filtering Tasks</h3>
-                                <p className="text-gray-300 mb-4">Turbo provides powerful filtering capabilities:</p>
-                                <ul className="list-disc list-inside text-gray-300 space-y-2">
-                                    <li>Filter by dependencies: <code className="text-sm bg-gray-900/50 px-2 py-1 rounded">--filter=...{`{dependencies}`}</code></li>
-                                    <li>Filter by package name: <code className="text-sm bg-gray-900/50 px-2 py-1 rounded">--filter=web</code></li>
-                                    <li>Filter since last change: <code className="text-sm bg-gray-900/50 px-2 py-1 rounded">--since=main</code></li>
+                                <h3 className="mb-4 text-xl font-semibold text-white">
+                                    Filtering Tasks
+                                </h3>
+                                <p className="mb-4 text-gray-300">
+                                    Turbo provides powerful filtering
+                                    capabilities:
+                                </p>
+                                <ul className="list-inside list-disc space-y-2 text-gray-300">
+                                    <li>
+                                        Include dependencies:{' '}
+                                        <code className="rounded bg-gray-900/50 px-2 py-1 text-sm">
+                                            --filter=frontend...
+                                        </code>
+                                    </li>
+                                    <li>
+                                        Filter by package name:{' '}
+                                        <code className="rounded bg-gray-900/50 px-2 py-1 text-sm">
+                                            --filter=frontend
+                                        </code>
+                                    </li>
+                                    <li>
+                                        Filter since last change:{' '}
+                                        <code className="rounded bg-gray-900/50 px-2 py-1 text-sm">
+                                            --filter=[main]
+                                        </code>
+                                    </li>
                                 </ul>
                             </div>
 
                             <div className="rounded-lg bg-gray-800/50 p-6">
-                                <h3 className="text-xl font-semibold text-white mb-4">
+                                <h3 className="mb-4 text-xl font-semibold text-white">
                                     Common Issues
                                 </h3>
                                 <div className="space-y-4">
                                     <div>
-                                        <p className="text-white font-medium mb-2">
+                                        <p className="mb-2 font-medium text-white">
                                             Cache Issues
                                         </p>
-                                        <pre className="text-sm text-gray-300 bg-gray-900/50 p-4 rounded">
-                                            <code>turbo clean # Clear the Turbo cache</code>
+                                        <pre className="rounded bg-gray-900/50 p-4 text-sm text-gray-300">
+                                            <code>
+                                                pnpm turbo run build --force #
+                                                Rebuild without cache reads
+                                            </code>
                                         </pre>
                                     </div>
                                 </div>
@@ -180,6 +232,5 @@ yarn dev`}
                 </div>
             </main>
         </div>
-    )
+    );
 }
-

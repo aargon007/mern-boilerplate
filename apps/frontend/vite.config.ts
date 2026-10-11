@@ -1,26 +1,32 @@
 import babel from '@rolldown/plugin-babel';
-import { defineConfig, PluginOption } from 'vite';
+import tailwindcss from '@tailwindcss/vite';
 import react, { reactCompilerPreset } from '@vitejs/plugin-react';
-import tailwindcss from '@tailwindcss/vite'
+import { fileURLToPath } from 'node:url';
+import { defineConfig, loadEnv } from 'vite';
 
-// https://vitejs.dev/config/
-export default defineConfig({
-    plugins: [
-        react(),
-        babel({
-            presets: [reactCompilerPreset()],
-        }),
-        tailwindcss()
-    ] as PluginOption[],
-    resolve: {
-        tsconfigPaths: true
-    },
-    server: {
-        host: true,
-        watch: {
-            usePolling: true
+const envDir = fileURLToPath(new URL('../../', import.meta.url));
+
+export default defineConfig(({ mode }) => {
+    const env = loadEnv(mode, envDir, '');
+    return {
+        envDir,
+        plugins: [
+            react(),
+            babel({ presets: [reactCompilerPreset()] }),
+            tailwindcss()
+        ],
+        resolve: { tsconfigPaths: true },
+        server: {
+            host: true,
+            strictPort: true,
+            port: Number(env.VITE_PORT || 5173),
+            proxy: { '/api': `http://localhost:${env.PORT || 5001}` }
         },
-        strictPort: false,
-        port: parseInt(process.env.VITE_PORT || '5173', 10)
-    }
+        preview: {
+            host: true,
+            strictPort: true,
+            port: 4173,
+            proxy: { '/api': `http://localhost:${env.PORT || 5001}` }
+        }
+    };
 });

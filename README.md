@@ -1,102 +1,86 @@
 # MERN Turborepo Starter
 
-A MERN monorepo built with PNPM workspaces and Turborepo.
+A pnpm workspace with a React frontend, Express API, and shared lint/TypeScript configuration. Turborepo schedules tasks and caches build outputs.
 
 ## Stack
 
-- Frontend: React 19, Vite 8, TypeScript, Tailwind CSS 4, Redux Toolkit
-- Backend: Express 5, TypeScript, Mongoose, Zod
-- Tooling: Turborepo, PNPM, ESLint 10, Prettier
-- Deployment: Docker, Docker Compose, Nginx
+| Area       | Tools                                                                                          |
+| ---------- | ---------------------------------------------------------------------------------------------- |
+| Frontend   | React 19, Vite 8, Tailwind CSS 4, Redux Toolkit, React Router 8                                |
+| API        | Express 5, Mongoose 9, Zod 4, JWT, bcrypt                                                      |
+| Tooling    | Turborepo 2.11.7, TypeScript 7 builds with TypeScript 6 API compatibility, ESLint 10, Prettier |
+| Containers | Nginx frontend, Node API, MongoDB 8                                                            |
 
-## Workspace
+## Quick start
 
-```text
-.
-├── apps/
-│   ├── frontend/
-│   └── server/
-├── packages/
-│   ├── eslint-config/
-│   └── typescript-config/
-├── turbo.json
-└── pnpm-workspace.yaml
-```
-
-## Requirements
-
-- Node.js 22+
-- PNPM 9
-
-## Quick Start
+Use Node **22.18+ on the Node 22 line, or 24.11+** and **pnpm 9.0.0** (the repository's pinned version). You also need MongoDB locally or a MongoDB connection URL.
 
 ```bash
 git clone https://github.com/aargon007/mern-boilerplate
 cd mern-boilerplate
-pnpm install
+corepack enable
+corepack prepare pnpm@9.0.0 --activate
+pnpm install --frozen-lockfile
+cp .env.example .env
+# Edit .env: configure MongoDB and replace both JWT secrets.
 pnpm dev
 ```
 
-## Root Commands
+Open the frontend at <http://localhost:5173>, the API at <http://localhost:5001>, and the starter's docs page at <http://localhost:5173/docs>. Vite proxies `/api` to the API in development.
 
-```bash
-pnpm dev
-pnpm build
-pnpm lint
-pnpm start
+## Commands
+
+Run these from the repository root:
+
+| Command                                     | Purpose                                                               |
+| ------------------------------------------- | --------------------------------------------------------------------- |
+| `pnpm dev`                                  | Run both apps with file watching                                      |
+| `pnpm build`                                | Type-check and build both apps into their own `dist/` folders         |
+| `pnpm lint`                                 | Lint both apps                                                        |
+| `pnpm typecheck`                            | Check TypeScript without emitting application code                    |
+| `pnpm test`                                 | Build apps and run API runtime smoke tests; no database required      |
+| `pnpm start`                                | Build and run the API plus Vite's local frontend preview on port 4173 |
+| `pnpm format`                               | Format the app workspaces                                             |
+| `pnpm build:frontend` / `pnpm build:server` | Build one app                                                         |
+| `pnpm start:frontend` / `pnpm start:server` | Build and start one app                                               |
+
+Use `pnpm turbo run dev --filter=frontend` or `--filter=server` to run one development task. `pnpm --filter <name> <script>` runs a package script directly, bypassing Turbo's cache and task dependencies.
+
+Vite preview is for local verification. The Docker frontend serves the compiled static files with Nginx.
+
+## Structure
+
+```text
+apps/frontend/                  React UI, Redux state, routes and styles
+apps/server/src/                API modules, middleware, helpers and config
+apps/server/public/             API landing and not-found pages
+apps/server/tests/              Built API smoke tests
+packages/eslint-config/         Shared flat ESLint configurations
+packages/typescript-config/     Shared base, Vite and Node TS configurations
+docker/nginx/                   Static frontend and API proxy configuration
+docs/                           Setup, environment, Docker and maintenance guides
+.github/workflows/ci.yml         Install, lint, build, type-check and test
 ```
-
-Package-targeted examples:
-
-```bash
-pnpm build:frontend
-pnpm build:server
-pnpm start:frontend
-pnpm start:server
-```
-
-## App Commands
-
-Frontend:
-
-```bash
-pnpm --filter frontend dev
-pnpm --filter frontend build
-pnpm --filter frontend lint
-```
-
-Server:
-
-```bash
-pnpm --filter server dev
-pnpm --filter server build
-pnpm --filter server lint
-```
-
-## Monorepo Notes
-
-- Root scripts delegate through `turbo run`
-- Shared TypeScript config lives in `packages/typescript-config`
-- Shared ESLint config lives in `packages/eslint-config`
-- Frontend uses Vite 8 native TS path resolution
-- Server uses ESLint flat config at `apps/server/eslint.config.mjs`
 
 ## Docker
 
-```bash
-docker-compose up --build
-```
-
-## Validation
+After creating `.env` and setting JWT secrets:
 
 ```bash
-pnpm turbo run lint
-pnpm turbo run build
+docker compose up --build
 ```
+
+Open <http://localhost:4173>. Compose includes MongoDB with a persistent volume. See the [Docker guide](docs/DOCKER.md) for environment overrides and image behavior.
+
+## Starter scope
+
+The API has registration, login and password-change examples. The frontend has home/docs pages and a dashboard scaffold. Login screens, profile retrieval and refresh-token handling are unfinished; this is a development foundation rather than a complete authentication product. See [API and starter limitations](docs/API.md).
 
 ## Documentation
 
-- [Docs Index](./docs/README.md)
-- [Docker Guide](./docs/DOCKER.md)
-- [Monorepo Notes](./docs/MONOREPO.md)
-- [Quick Start Notes](./docs/QUICK_START.md)
+- [Quick start and troubleshooting](docs/QUICK_START.md)
+- [Environment variables](docs/ENVIRONMENT.md)
+- [Workspace, Turbo tasks and upgrades](docs/MONOREPO.md)
+- [Docker](docs/DOCKER.md)
+- [API and starter limitations](docs/API.md)
+- [Dependency upgrade review](docs/UPGRADE.md)

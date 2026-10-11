@@ -1,11 +1,10 @@
-import { createBrowserRouter } from 'react-router';
 import ErrorPage from '@/components/shared/ErrorPage';
 import DashboardLayout from '@/layouts/DashboardLayout';
 import RootLayout from '@/layouts/RootLayout';
-import ProtectedRoute from './ProtectedRoute';
-import Homepage from '@/pages/Homepage';
 import DashboardPage from '@/pages/DashboardPage';
-import Documentation from '@/pages/Boilerplate/Documentation';
+import Homepage from '@/pages/Homepage';
+import { createBrowserRouter } from 'react-router';
+import ProtectedRoute from './ProtectedRoute';
 
 // data mode : https://reactrouter.com/start/data/installation
 const Routes = createBrowserRouter([
@@ -20,7 +19,11 @@ const Routes = createBrowserRouter([
             },
             {
                 path: '/docs',
-                element: <Documentation />
+                lazy: async () => ({
+                    Component: (
+                        await import('@/pages/Boilerplate/Documentation')
+                    ).default
+                })
             }
         ]
     },

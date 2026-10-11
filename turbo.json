@@ -1,53 +1,57 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "ui": "tui",
-  "globalDependencies": [
-    ".env",
-    ".gitignore"
-  ],
-  "tasks": {
-    "dev": {
-      "cache": false,
-      "persistent": true,
-      "dependsOn": [],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env.development.local",
-        ".env.development",
-        ".env.local",
-        ".env"
-      ]
-    },
-    "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "dist/**"
-      ],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env.production.local",
-        ".env.production",
-        ".env.local",
-        ".env"
-      ]
-    },
-    "start": {
-      "dependsOn": [
-        "build"
-      ],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env.production.local",
-        ".env.production",
-        ".env.local",
-        ".env"
-      ]
-    },
-    "lint": {
-      "outputs": [],
-      "cache": true
+    "$schema": "https://turborepo.dev/schema.json",
+    "ui": "tui",
+    "tasks": {
+        "dev": {
+            "description": "Run application development servers",
+            "cache": false,
+            "persistent": true,
+            "passThroughEnv": [
+                "NODE_ENV",
+                "PORT",
+                "DB_URI",
+                "BCRYPT_SALT_ROUNDS",
+                "JWT_*",
+                "CLIENT_ORIGIN",
+                "VITE_*"
+            ]
+        },
+        "build": {
+            "description": "Type-check and compile applications",
+            "dependsOn": ["^build"],
+            "outputs": ["dist/**"],
+            "inputs": ["$TURBO_DEFAULT$", ".env*", "$TURBO_ROOT$/.env*"],
+            "env": ["VITE_*", "PORT"]
+        },
+        "start": {
+            "description": "Run built applications (frontend preview only)",
+            "dependsOn": ["build"],
+            "cache": false,
+            "persistent": true,
+            "passThroughEnv": [
+                "NODE_ENV",
+                "PORT",
+                "DB_URI",
+                "BCRYPT_SALT_ROUNDS",
+                "JWT_*",
+                "CLIENT_ORIGIN",
+                "VITE_*"
+            ]
+        },
+        "lint": {
+            "dependsOn": ["^lint"],
+            "outputs": []
+        },
+        "typecheck": {
+            "dependsOn": ["^typecheck"],
+            "outputs": []
+        },
+        "format": {
+            "cache": false
+        },
+        "test": {
+            "dependsOn": ["build"],
+            "outputs": []
+        }
     }
-  }
 }

@@ -47,8 +47,9 @@ const userSchema = new Schema<TUser>(
 );
 
 // hashed password
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function () {
     const user = this; // doc
+    if (!user.isModified('password')) return;
 
     // hashing password and save into DB
     user.password = await bcrypt.hash(
@@ -57,8 +58,6 @@ userSchema.pre('save', async function (next) {
     );
 
     user.passwordChangedAt = new Date();
-
-    // next();
 });
 
 // hide password, password history, change password date before sending response

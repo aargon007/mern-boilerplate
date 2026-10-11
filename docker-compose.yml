@@ -1,46 +1,43 @@
 services:
-  # Backend Server
-  server:
-    build:
-      context: .
-      dockerfile: apps/server/Dockerfile
-    container_name: mern-turbo-server
-    restart: unless-stopped
-    env_file:
-      - .env
-    environment:
-      NODE_ENV: ${NODE_ENV}
-      PORT: ${PORT}
-      DB_URI: ${DB_URI}
-      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET}
-      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
-      JWT_ACCESS_EXPIRES_IN: ${JWT_ACCESS_EXPIRES_IN}
-      JWT_REFRESH_EXPIRES_IN: ${JWT_REFRESH_EXPIRES_IN}
-      BCRYPT_SALT_ROUNDS: ${BCRYPT_SALT_ROUNDS}
-      CLIENT_ORIGIN: ${CLIENT_ORIGIN}
-    ports:
-      - "5000:5000"
-    networks:
-      - mern-turbo-network
-    volumes:
-      - ./logs:/app/logs
+    server:
+        build:
+            context: .
+            dockerfile: apps/server/Dockerfile
+        restart: unless-stopped
+        env_file: .env
+        environment:
+            NODE_ENV: production
+            PORT: 5001
+            DB_URI: ${DOCKER_DB_URI:-mongodb://mongo:27017/myapp}
+            CLIENT_ORIGIN: ${DOCKER_CLIENT_ORIGIN:-http://localhost:4173}
+        ports:
+            - '5001:5001'
+        depends_on:
+            mongo:
+                condition: service_healthy
 
-  # Frontend Application
-  frontend:
-    build:
-      context: .
-      dockerfile: apps/frontend/Dockerfile
-    container_name: mern-turbo-frontend
-    restart: unless-stopped
-    environment:
-      VITE_BASE_API: ${VITE_BASE_API}
-    ports:
-      - "4173:4173"
-    depends_on:
-      - server
-    networks:
-      - mern-turbo-network
+    frontend:
+        build:
+            context: .
+            dockerfile: apps/frontend/Dockerfile
+            args:
+                VITE_BASE_API: ${VITE_BASE_API:-/api/v1}
+        restart: unless-stopped
+        ports:
+            - '4173:80'
+        depends_on:
+            - server
 
-networks:
-  mern-turbo-network:
-    driver: bridge
+    mongo:
+        image: mongo:8
+        restart: unless-stopped
+        volumes:
+            - mongo-data:/data/db
+        healthcheck:
+            test: ['CMD', 'mongosh', '--quiet', '--eval', "db.adminCommand('ping').ok"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+
+volumes:
+    mongo-data:

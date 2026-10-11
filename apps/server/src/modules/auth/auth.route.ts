@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Router } from 'express';
 import validateRequest from '@/middlewares/validateRequest';
 import { createUserValidationSchema } from '@/modules/user/user.validation';
 import { UserControllers } from '@/modules/user/user.controller';
@@ -7,7 +7,7 @@ import { AuthControllers } from '@/modules/auth/auth.controller';
 import { USER_ROLE } from '@/modules/user/user.interface';
 import auth from '@/middlewares/auth';
 
-const router = express.Router();
+const router: Router = express.Router();
 
 // create user
 router.post(
@@ -31,4 +31,4 @@ router.post(
     AuthControllers.changePassword
 );
 
-export const UserRoutes = router;
+export const UserRoutes: Router = router;

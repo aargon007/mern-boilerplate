@@ -7,7 +7,6 @@
         "types": ["node"],
         "allowImportingTsExtensions": true,
         "moduleDetection": "force",
-        "baseUrl": ".",
         "paths": {
             "@/*": ["./src/*"]
         },

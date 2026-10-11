@@ -20,7 +20,9 @@ const NavBar = () => {
             <ul className="flex list-none items-center justify-between gap-x-5">
                 <li></li>
                 <li>
-                    <Link target='_blank' to="http://localhost:5000/">API</Link>
+                    <Link target="_blank" to="http://localhost:5001/">
+                        API
+                    </Link>
                 </li>
                 <li>
                     <Link to="/docs">API Documentation</Link>

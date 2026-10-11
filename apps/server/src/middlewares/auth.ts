@@ -10,7 +10,10 @@ import config from '@/config';
 const auth = (...requiredRoles: TUserRole[]) => {
     return catchAsync(
         async (req: Request, res: Response, next: NextFunction) => {
-            const token = req.headers.authorization;
+            const authorization = req.headers.authorization;
+            const token = authorization?.startsWith('Bearer ')
+                ? authorization.slice(7)
+                : undefined;
 
             // if the token is missing throw error
             if (!token) {
@@ -22,10 +25,18 @@ const auth = (...requiredRoles: TUserRole[]) => {
             }
 
             // checking if the given token is valid
-            const decoded = jwt.verify(
-                token,
-                config.jwt_access_secret as string
-            ) as JwtPayload;
+            let decoded: JwtPayload;
+            try {
+                decoded = jwt.verify(
+                    token,
+                    config.jwt_access_secret
+                ) as JwtPayload;
+            } catch {
+                throw new AppError(
+                    httpStatus.UNAUTHORIZED,
+                    'Invalid or expired access token'
+                );
+            }
 
             const { _id, email, role, iat, exp } = decoded;
 

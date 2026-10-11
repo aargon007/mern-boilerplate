@@ -1,10 +1,7 @@
 node_modules
 dist
 build
-*.md
 .turbo
-.env
-.env.local
+.env*
+!.env.example
 pnpm-lock.yaml
-yarn.lock
-package-lock.json

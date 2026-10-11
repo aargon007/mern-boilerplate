@@ -1,33 +1,29 @@
 {
-  "name": "@repo/eslint-config",
-  "version": "0.0.0",
-  "main": "base.js",
-  "license": "MIT",
-  "dependencies": {
-    "@eslint/js": "^10.0.1",
-    "@typescript-eslint/eslint-plugin": "^8.57.1",
-    "@typescript-eslint/parser": "^8.57.1",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.5.2",
-    "globals": "^17.4.0",
-    "typescript-eslint": "^8.57.1"
-  },
-  "peerDependencies": {
-    "eslint": "^9.39.1 || ^10.0.0",
-    "typescript": "^5.9.3"
-  },
-  "devDependencies": {
-    "eslint": "^10.0.3",
-    "typescript": "^5.9.3"
-  },
-  "exports": {
-    ".": "./base.js",
-    "./base": "./base.js",
-    "./node": "./node.mjs",
-    "./react": "./react.mjs"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@repo/eslint-config",
+    "version": "0.0.0",
+    "main": "node.mjs",
+    "license": "MIT",
+    "dependencies": {
+        "@eslint/js": "^10.0.1",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-react-hooks": "^7.1.1",
+        "eslint-plugin-react-refresh": "^0.5.7",
+        "globals": "^17.13.0",
+        "typescript-eslint": "^8.71.1"
+    },
+    "peerDependencies": {
+        "eslint": "^9.39.1 || ^10.0.0",
+        "typescript": ">=5.9.3 <6.1.0"
+    },
+    "devDependencies": {
+        "eslint": "^10.12.0",
+        "typescript": "npm:@typescript/typescript6@^6.0.2"
+    },
+    "exports": {
+        ".": "./node.mjs",
+        "./base": "./node.mjs",
+        "./node": "./node.mjs",
+        "./react": "./react.mjs"
+    },
+    "private": true
 }

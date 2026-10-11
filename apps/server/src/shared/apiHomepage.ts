@@ -1,23 +1,13 @@
 import express, { Application } from 'express';
-import path from 'path';
+import path from 'node:path';
 
-// TODO: add api homepage for production. NEED TO FIX ROUTING
-export function configureProductionApp(app: Application) {
-    const frontendDistPath = path.join(__dirname, '../../../../frontend/dist');
-    app.use(express.static(frontendDistPath));
-
-    app.get('/', (req, res) => {
-        res.sendFile(path.resolve(frontendDistPath, 'index.html'));
-    });
-}
-
-// api homepage for development
+// The API and frontend deploy independently; serve the API landing page in both modes.
 export function configureDevelopmentApp(app: Application) {
-    const publicPath = path.join(__dirname, "../../" + 'public');
-
+    const publicPath = path.resolve(__dirname, '../../public');
     app.use(express.static(publicPath));
-
-    app.get('/', (req, res) => {
+    app.get('/', (_req, res) => {
         res.sendFile(path.join(publicPath, 'index.html'));
     });
 }
+
+export const configureProductionApp = configureDevelopmentApp;
